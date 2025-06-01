@@ -10,7 +10,9 @@ $invocationPath = Split-Path -Parent $MyInvocation.MyCommand.Path
 # Scripts to run
 $scripts = @(
   "debloat.ps1",
-  "common-apps.ps1"
+  "common-apps.ps1",
+  "config.ps1",
+  "preferences.ps1"
 )
 
 foreach ($script in $scripts) {
