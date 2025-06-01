@@ -6,9 +6,12 @@
 # - get this script via a web request
 # - save it a temp location
 # - tell Windows we know what we're doing
-# - execute
+# - execute it
 
-# This one liner should achieve that
+# Don't forget Windows thinks it knows best - it won't let you execute a remote script without...
+# Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+# Then we should able to do everything with this one liner
 # Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/danlechambre/windows-box-fresh/main/preflight.ps1' -OutFile "$env:TEMP\preflight.ps1"; Unblock-File "$env:TEMP\preflight.ps1"; & "$env:TEMP\preflight.ps1"
 
 # ---------
