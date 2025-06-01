@@ -22,7 +22,7 @@ foreach ($script in $scripts) {
       & $scriptPath
       Write-Host "$script completed successfully!"
     } catch {
-      Write-Error "Error running $script: $_"
+      Write-Error "Error running $script"
       break
     }
   } else {
