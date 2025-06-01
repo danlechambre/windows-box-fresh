@@ -12,7 +12,7 @@ $appsToInstall = @(
 )
 
 # Install each app
-foreach ($app in $apps) {
+foreach ($app in $appsToInstall) {
   Write-Host "`nInstalling $($app.name)..."
   winget install --id $app.id --silent --accept-package-agreements --accept-source-agreements
 }
