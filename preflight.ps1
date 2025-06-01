@@ -1,12 +1,25 @@
-# Invoke-WebRequest -Uri "https://raw.githubusercontent.com/danlechambre/windows-box-fresh/main/preflight.ps1" -OutFile "$env:TEMP\preflight.ps1"
-# powershell -ExecutionPolicy Bypass -File "$env:TEMP\preflight.ps1"
+# ---------
+# Preflight
+# ---------
 
-# Upgrade PowerShell
+# We don't have git installed on a fresh Windows 11 install so we need to:
+# - get this script via a web request
+# - save it a temp location
+# - tell Windows we know what we're doing
+# - execute
+
+# This one liner should achieve that
+# Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/danlechambre/windows-box-fresh/main/preflight.ps1' -OutFile "$env:TEMP\preflight.ps1"; Unblock-File "$env:TEMP\preflight.ps1"; & "$env:TEMP\preflight.ps1"
+
+# ---------
+
+# Upgrade PowerShell and accept the store terms
 winget install --id Microsoft.PowerShell --source winget --accept-source-agreements
 
-# Variables – customize these
 $repoName = "danlechambre/windows-box-fresh"
 $cloneDirectory = "$env:USERPROFILE\source\$($repoName.Split('/')[1])"
+# Create the directory if it doesn't exist
+New-Item -ItemType Directory -Force -Path (Split-Path $cloneDirectory) | Out-Null
 
 # Function to check if Git is installed
 function Test-GitInstalled {
