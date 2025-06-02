@@ -16,6 +16,8 @@
 
 # ---------
 
+Write-Host "Starting Preflight..." -ForegroundColor Yellow
+
 # Upgrade PowerShell and accept the store terms
 winget install --id Microsoft.PowerShell --source winget --accept-source-agreements
 
@@ -51,3 +53,7 @@ if (-not (Test-Path $cloneDirectory)) {
 } else {
     Write-Host "Directory $cloneDirectory already exists. Skipping clone."
 }
+
+# Kick off the Bootstrap
+Write-Host "Starting Bootstrap..." -ForegroundColor Yellow
+& "$cloneDirectory\bootstrap.ps1"

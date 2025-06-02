@@ -11,19 +11,26 @@ $appsToRemove = @(
   "Clipchamp.Clipchamp",
   "Microsoft.Copilot",
   "Microsoft.ZuneMusic",
-  "Microsoft.ZuneVideo"
+  "Microsoft.ZuneVideo",
+  "Microsoft.Todos",
+  "Microsoft.WindowsCamera",
+  "Microsoft.OutlookForWindows",
+  "Microsoft.BingWeather",
+  "Microsoft.BingNews",
+  "Microsoft.MicrosoftOfficeHub",
+  "Microsoft.PowerAutomateDesktop",
+  "Microsoft.WindowsFeedbackHub",
+  "MSTeams"
 )
 
 foreach ($app in $appsToRemove) {
-  Write-Host "Uninstalling $app ($index of $total)" -ForegroundColor Yellow
-
   $pkg = Get-AppxPackage -AllUsers -Name $app
   if ($pkg) {
-    Write-Output "Removing: $app"
+    Write-Host "Removing: $app" -ForegroundColor Blue
     Remove-AppxPackage -Package $pkg.PackageFullName
   } else {
-    Write-Output "Not installed: $app"
+    Write-Host "Couldn't find: $app" -ForegroundColor Yellow
   }
 }
 
-Write-Host "Completed debloat successfully!" -ForegroundColor Cyan
+Write-Host "Completed debloat successfully!" -ForegroundColor Green
